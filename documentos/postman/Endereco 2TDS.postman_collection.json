@@ -1,0 +1,766 @@
+{
+	"info": {
+		"_postman_id": "a02b4c4e-e1b4-4739-8a79-e55d1570c6df",
+		"name": "Endereco 2TDS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1524675"
+	},
+	"item": [
+		{
+			"name": "001 - USUÁRIO Copy",
+			"item": [
+				{
+					"name": "PF",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Benefrancis do Nascimento\",\r\n    \"nascimento\": \"1977-03-08\",\r\n    \"cpf\": \"23872891864\",\r\n    \"sexo\": \"MASCULINO\",\r\n    \"email\": \"benefrancis@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/pf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PF",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate that the response is an array\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate 'cpf' is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item.cpf).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PF/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response is an array\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response array is empty\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the response is not null\", function () {",
+									"  pm.expect(pm.response.json()).to.not.be.null;",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pf/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pf",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PJ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is an array\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response array is empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"    pm.expect(responseData).to.have.lengthOf(0);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the structure of the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"    responseData.forEach(function(item) {\r",
+									"        pm.expect(item).to.be.an('object');\r",
+									"        pm.expect(item.id).to.exist.and.to.be.a('string');\r",
+									"        pm.expect(item.name).to.exist.and.to.be.a('string');\r",
+									"        pm.expect(item.date).to.exist.and.to.be.a('string');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the response array is not null or undefined\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.not.be.null;\r",
+									"    pm.expect(responseData).to.not.be.undefined;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the response array contains only objects\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"    \r",
+									"    responseData.forEach(function(item) {\r",
+									"        pm.expect(item).to.be.an('object');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the response array does not contain any duplicate items\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"    \r",
+									"    const uniqueItems = new Set(responseData);\r",
+									"    pm.expect(uniqueItems.size).to.equal(responseData.length, \"Array contains duplicate items\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the response array is sorted in ascending order by id\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array');\r",
+									"    \r",
+									"    if (responseData.length > 1) {\r",
+									"        for (let i = 0; i < responseData.length - 1; i++) {\r",
+									"            pm.expect(responseData[i].id).to.be.at.most(responseData[i + 1].id);\r",
+									"        }\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5vbWUiOiJjbGllbnRlIn1dLCJwZXNzb2EiOiJCZW5lZnJhbmNpcyBkbyBOYXNjaW1lbnRvIiwiZXhwIjoxNjk2NjQ1NDEwfQ.-S1KlHDh0isleWYjeOGJJD9-gawJnjmG3ctcUzwSNzM",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "privateKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pj",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PJ/id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response body is an array\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response body is empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('array').that.is.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify response headers\", function () {\r",
+									"    pm.response.headers.each(function (header) {\r",
+									"        switch (header.key) {\r",
+									"            case \"Content-Type\":\r",
+									"                pm.expect(header.value).to.include(\"application/json\");\r",
+									"                break;\r",
+									"            case \"Access-Control-Allow-Origin\":\r",
+									"                pm.expect(header.value).to.include(\"*\");\r",
+									"                break;\r",
+									"            case \"Cache-Control\":\r",
+									"                pm.expect(header.value).to.include(\"no-cache, no-store, must-revalidate\");\r",
+									"                break;\r",
+									"            // Add more cases for other expected headers if needed\r",
+									"        }\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify the response body length is 0\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('array').and.to.have.lengthOf(0);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the 'Content-Type' header is present and has the value 'application/json'\", function () {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify Access-Control-Allow-Origin header\", function () {\r",
+									"  pm.expect(pm.response.headers.has(\"Access-Control-Allow-Origin\")).to.be.true;\r",
+									"  pm.expect(pm.response.headers.get(\"Access-Control-Allow-Origin\")).to.equal(\"*\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the Cache-Control header is present and has the value 'no-cache, no-store, must-revalidate'\", function () {\r",
+									"    pm.response.headers.has(\"Cache-Control\");\r",
+									"    pm.expect(pm.response.headers.get(\"Cache-Control\")).to.equal(\"no-cache, no-store, must-revalidate\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify that the 'Content-Length' header is present and has the value 0\", function () {\r",
+									"    pm.expect(pm.response.headers.has('Content-Length')).to.be.true;\r",
+									"    pm.expect(pm.response.headers.get('Content-Length')).to.equal('0');\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5vbWUiOiJjbGllbnRlIn1dLCJwZXNzb2EiOiJCZW5lZnJhbmNpcyBkbyBOYXNjaW1lbnRvIiwiZXhwIjoxNjk2NjQ1NDEwfQ.-S1KlHDh0isleWYjeOGJJD9-gawJnjmG3ctcUzwSNzM",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "privateKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/pj/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pj",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PJ",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5vbWUiOiJjbGllbnRlIn1dLCJwZXNzb2EiOiJCZW5lZnJhbmNpcyBkbyBOYXNjaW1lbnRvIiwiZXhwIjoxNjk2NjQ1NDEwfQ.-S1KlHDh0isleWYjeOGJJD9-gawJnjmG3ctcUzwSNzM",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "privateKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Benezinho Holding SA\",\r\n    \"nascimento\": \"2000-03-08\",\r\n    \"cnpj\": \"010223872891864\",\r\n    \"email\": \"holding@benezinho.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/pj",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pj"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PJ BANK",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5vbWUiOiJjbGllbnRlIn1dLCJwZXNzb2EiOiJCZW5lZnJhbmNpcyBkbyBOYXNjaW1lbnRvIiwiZXhwIjoxNjk2NjQzNjgwfQ.GkYQZKpivzDeL2aGUa5sYdjgFwrZ8WVAolgvmdh9CKo",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "privateKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Benezinho Bank SA\",\r\n    \"nascimento\": \"2000-03-08\",\r\n    \"cnpj\": \"010223872891854\",\r\n    \"email\": \"bank@benezinho.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/pj",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"pj"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Você pode cadastrar um novo usuário:\n\n<img src=\"https://content.pstmn.io/f101bef4-96f8-4933-ac5d-7aa1a2f5d807/aW1hZ2UucG5n\" alt=\"Exemplo%20de%20como%20se%20cadastra%20um%20usuário\" width=\"2015\" height=\"531\">"
+		},
+		{
+			"name": "002 - Autenticação Copy",
+			"item": [
+				{
+					"name": "LOGIN PF",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the authorities object\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.authorities).to.exist.and.to.be.an('array').that.is.not.empty;\r",
+									"  \r",
+									"  responseData.authorities.forEach(function(authority) {\r",
+									"    pm.expect(authority).to.be.an('object');\r",
+									"    pm.expect(authority.id).to.exist.and.to.be.a('number');\r",
+									"    pm.expect(authority.nome).to.exist.and.to.be.a('string');\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the authorization field is not empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.authorization).to.exist.and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The id field is a non-negative integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.id).to.exist.and.to.be.a('number');\r",
+									"    pm.expect(responseData.id).to.be.at.least(0, \"Value should be a non-negative integer\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the password field is not empty\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  pm.expect(responseData.password).to.exist.and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// Test for common fields\r",
+									"pm.test(\"Validate common fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.username).to.exist.and.to.be.a('string');\r",
+									"    pm.expect(responseData.pessoa).to.exist.and.to.be.a('number');\r",
+									"});\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the 'authorities' array\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.authorities).to.be.an('array');\r",
+									"    responseData.authorities.forEach(function(authority) {\r",
+									"        pm.expect(authority).to.be.an('object');\r",
+									"        pm.expect(authority.id).to.exist.and.to.be.a('number');\r",
+									"        pm.expect(authority.nome).to.exist.and.to.be.a('string');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the authorization field\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.authorization).to.exist.and.to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the 'id' field\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.id).to.exist.and.to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the password field\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.password).to.exist.and.to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"benefrancis@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/authorization",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"authorization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN PJ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the authorities object\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.authorities).to.exist.and.to.be.an('array').that.is.not.empty;\r",
+									"  \r",
+									"  responseData.authorities.forEach(function(authority) {\r",
+									"    pm.expect(authority).to.be.an('object');\r",
+									"    pm.expect(authority.id).to.exist.and.to.be.a('number');\r",
+									"    pm.expect(authority.nome).to.exist.and.to.be.a('string');\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the authorization field is not empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.authorization).to.exist.and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"The id field is a non-negative integer\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.id).to.exist.and.to.be.a('number');\r",
+									"    pm.expect(responseData.id).to.be.at.least(0, \"Value should be a non-negative integer\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Validate the password field is not empty\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData.password).to.exist.and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siaWQiOjEsIm5vbWUiOiJjbGllbnRlIn1dLCJwZXNzb2EiOiJCZW5lZnJhbmNpcyBkbyBOYXNjaW1lbnRvIiwiZXhwIjoxNjk2NjM1NjQ1fQ.xQJ8ApKqFhlyBnlxN7g-fWTnRdPALjLqkJToh4tMHg8",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "privateKey",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"holding@benezinho.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/authorization",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"authorization"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Realize a autenticação na API Benezinho - Petshop\n\n  \n\n<img src=\"https://content.pstmn.io/f82895d8-eefd-49a7-9a6e-de7c9ef3ca26/aW1hZ2UucG5n\" alt=\"Exemplo%20de%20como%20se%20realiza%20uma%20autenticação\" height=\"657\" width=\"2005\">"
+		},
+		{
+			"name": "003 - Endereco",
+			"item": [
+				{
+					"name": "CEP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/endereco/06086120",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"endereco",
+								"06086120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Endereco",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pessoa\": {\r\n        \"id\": 1\r\n    },\r\n    \"cep\": \"06086120\",\r\n    \"complemento\": \"AP 81-A\",\r\n    \"numero\": \"505\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/endereco/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"endereco",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
