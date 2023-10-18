@@ -1,10 +1,18 @@
 package br.com.fiap.domain.entity;
 
+import br.com.fiap.infra.security.entity.Pessoa;
+
 public class Endereco {
+
+    private Pessoa pessoa;
 
     private String cep;
 
     private String logradouro;
+
+    private String numero;
+
+    private String complemento;
 
     private String bairro;
 
@@ -24,9 +32,12 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(String cep, String logradouro, String bairro, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+    public Endereco(Pessoa pessoa, String cep, String logradouro, String numero, String complemento, String bairro, String localidade, String uf, String ibge, String gia, String ddd, String siafi) {
+        this.pessoa = pessoa;
         this.cep = cep;
         this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
         this.bairro = bairro;
         this.localidade = localidade;
         this.uf = uf;
@@ -34,6 +45,30 @@ public class Endereco {
         this.gia = gia;
         this.ddd = ddd;
         this.siafi = siafi;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getCep() {
@@ -111,15 +146,18 @@ public class Endereco {
     @Override
     public String toString() {
         return "Endereco{" +
-                "CEP='" + cep + '\'' +
+                "pessoa=" + pessoa +
+                ", cep='" + cep + '\'' +
                 ", logradouro='" + logradouro + '\'' +
+                ", numero='" + numero + '\'' +
+                ", complemento='" + complemento + '\'' +
                 ", bairro='" + bairro + '\'' +
                 ", localidade='" + localidade + '\'' +
-                ", UF='" + uf + '\'' +
-                ", IBGE='" + ibge + '\'' +
-                ", guia='" + gia + '\'' +
+                ", uf='" + uf + '\'' +
+                ", ibge='" + ibge + '\'' +
+                ", gia='" + gia + '\'' +
                 ", ddd='" + ddd + '\'' +
-                ", SIAFI='" + siafi + '\'' +
+                ", siafi='" + siafi + '\'' +
                 '}';
     }
 }

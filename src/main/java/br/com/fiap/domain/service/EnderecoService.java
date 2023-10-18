@@ -1,7 +1,9 @@
 package br.com.fiap.domain.service;
 
 import br.com.fiap.domain.entity.Endereco;
+import br.com.fiap.infra.configuration.data.LocalDateTypeAdapter;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -11,6 +13,7 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
 import java.util.List;
 
 public class EnderecoService {
@@ -43,7 +46,14 @@ public class EnderecoService {
 
             var body = response.body();
 
-            endereco = new Gson().fromJson(body, Endereco.class);
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter( LocalDate.class, new LocalDateTypeAdapter() )
+                    .create();
+
+
+            endereco = gson.fromJson( body, Endereco.class );
+
+
 
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
@@ -88,7 +98,13 @@ public class EnderecoService {
             Type tipo = new TypeToken<List<Endereco>>() {
             }.getType();
 
-            enderecos = new Gson().fromJson(body, tipo);
+
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter( LocalDate.class, new LocalDateTypeAdapter() )
+                    .create();
+
+            enderecos = gson.fromJson( body, tipo );
+
 
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
