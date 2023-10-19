@@ -1,5 +1,6 @@
 package br.com.fiap.domain.service;
 
+import br.com.fiap.domain.dto.EnderecoDTO;
 import br.com.fiap.domain.entity.Endereco;
 import br.com.fiap.infra.configuration.data.LocalDateTypeAdapter;
 import com.google.gson.Gson;
@@ -121,5 +122,10 @@ public class EnderecoService {
     public static String encode(String value) {
         return value.replace(" ", "%20").replace("#", "%23");
     }
+
+    public Endereco persist(EnderecoDTO e) {
+        return null;
+    }
+
 
 }

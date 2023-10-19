@@ -1,11 +1,26 @@
 package br.com.fiap.domain.entity;
 
-import br.com.fiap.infra.security.entity.Pessoa;
 
+
+import br.com.fiap.infra.security.entity.Pessoa;
+import jakarta.persistence.*;
+
+
+@Entity
+@Table(name = "TBL_ENDERECO", uniqueConstraints =
+         @UniqueConstraint(name = "UK_PESSOA_CEP", columnNames = {"PESSOA","CEP"})                           )
 public class Endereco {
 
+    @Id
+    @ManyToOne(fetch =  FetchType.EAGER, cascade ={CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(
+            name = "PESSOA", referencedColumnName = "ID_PESSOA",
+            foreignKey = @ForeignKey(name = "FK_TBL_ENDERCO_PESSOA")
+    )
     private Pessoa pessoa;
 
+    @Id
+    @Column(name = "CEP", nullable = false)
     private String cep;
 
     private String logradouro;
